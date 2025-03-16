@@ -9,19 +9,15 @@ def get_oss_config():
     return getattr(
         settings,
         "DJ_IMAGE_UPLOADER_OSS_CONFIG",
-        {
-            "ACCESS_KEY_ID": "your_key_id",
-            "ACCESS_KEY_SECRET": "your_secret",
-            "ENDPOINT": "oss-cn-beijing.aliyuncs.com",
-            "BUCKET_NAME": "your_bucket",
-            "BASE_PATH": "uploads/",
-        },
     )
 
 
-def upload_to_oss(file_obj, user_id=None):
+def upload_to_oss(file_obj, pathname=None):
     config = get_oss_config()
-
+    if pathname:
+        filename = f"{pathname}/{file_obj.name}"
+    else:
+        filename = f"{config['BASE_PATH']}/{file_obj.name}"
     try:
         auth = oss2.Auth(config["ACCESS_KEY_ID"], config["ACCESS_KEY_SECRET"])
         bucket = oss2.Bucket(auth, config["ENDPOINT"], config["BUCKET_NAME"])

@@ -15,7 +15,7 @@ DJ_IMAGE_UPLOADER_OSS_CONFIG = {
     'ACCESS_KEY_SECRET': 'your_aliyun_secret',
     'ENDPOINT': 'oss-cn-beijing.aliyuncs.com',
     'BUCKET_NAME': 'your-bucket-name',
-    'BASE_PATH': 'user-uploads/'  # 可选
+    'BASE_PATH': 'user-uploads/'  # 定义你的上传路径, 可选
 }
 
 INSTALLED_APPS = [
