@@ -2,7 +2,6 @@ from django.conf import settings
 from django.views.decorators.http import require_POST
 from django.core.exceptions import ImproperlyConfigured
 import oss2
-from .defaults import get_oss_config
 
 
 def get_oss_config():
@@ -22,7 +21,7 @@ def upload_to_oss(file_obj, pathname=None):
         auth = oss2.Auth(config["ACCESS_KEY_ID"], config["ACCESS_KEY_SECRET"])
         bucket = oss2.Bucket(auth, config["ENDPOINT"], config["BUCKET_NAME"])
 
-        filename = f"{config['BASE_PATH']}{user_id}_{file_obj.name}"
+        filename = f"{pathname}/{file_obj.name}"
         bucket.put_object(filename, file_obj)
         return f"https://{config['BUCKET_NAME']}.{config['ENDPOINT']}/{filename}"
     except KeyError as e:

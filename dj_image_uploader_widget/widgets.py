@@ -4,7 +4,7 @@ from django.utils.safestring import mark_safe
 
 
 class ImageUploaderWidget(widgets.URLInput):
-    template_name = "uploader.html"
+    template_name = "dj_image_uploader_widget/uploader.html"
 
     def __init__(self, upload_url, attrs=None):
         self.upload_url = upload_url
@@ -17,5 +17,5 @@ class ImageUploaderWidget(widgets.URLInput):
         return context
 
     class Media:
-        css = {"all": ("image_uploader_widget/css/uploader.css",)}
-        js = ("image_uploader_widget/js/uploader.js",)
+        css = {"all": ("uploader/css/uploader.css",)}
+        js = ("uploader/js/uploader.js",)
