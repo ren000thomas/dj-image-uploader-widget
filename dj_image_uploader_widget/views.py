@@ -3,8 +3,11 @@ from django.http import JsonResponse
 from django.views.decorators.http import require_POST
 from .oss import upload_to_oss
 import uuid
+from django.utils.decorators import method_decorator
+from django.views.decorators.csrf import csrf_exempt
 
 
+@method_decorator(csrf_exempt, name="dispatch")
 @require_POST
 @login_required
 def upload_view(request):
@@ -13,7 +16,7 @@ def upload_view(request):
         user_id = request.user.id
         # 判断是否为 UUID 类型
         if isinstance(user_id, uuid.UUID):
-            pathname = f"User-{user_id}"
+            pathname = f"user-{user_id}"
         else:
             # 将数字 ID 格式化为 8 位带前导零
             try:
