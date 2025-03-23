@@ -28,7 +28,7 @@ from dj_image_uploader_widget import views as upload_views
 
 urlpatterns = [
     ...
-    path('upload/', upload_views.upload_view, name='image_upload'),
+    path('upload-to-oss/', upload_views.upload_view, name='image_upload'),
 ]
 ```
 
@@ -37,11 +37,11 @@ urlpatterns = [
 ```python
 # models.py
 from django.db import models
-from dj_image_uploader_widget.fields import ImageUploadField
+from dj_image_uploader_widget.fields import ImageUploaderField
 
 class Article(models.Model):
-    cover = ImageUploadField(
-        upload_url='/upload/',  # 对应你的上传路径
+    cover = ImageUploaderField(
+        upload_url='/upload-to-oss/',  # 对应你的上传路径
         verbose_name="文章封面"
     )
 ```

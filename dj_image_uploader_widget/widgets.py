@@ -3,7 +3,7 @@ from django.forms import widgets
 from django.utils.safestring import mark_safe
 
 
-class ImageUploaderWidget(widgets.URLInput):
+class ImageUploaderWidget(widgets.Input):
     template_name = "dj_image_uploader_widget/uploader.html"
 
     def __init__(self, upload_url, attrs=None):

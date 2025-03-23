@@ -25,8 +25,7 @@ def upload_view(request):
                 # 如果既不是 UUID 也不是数字，保留原始值
                 formatted_id = str(user_id)
 
-        pathname = f"User-{formatted_id}"
-        print(pathname)
+        pathname = f"user-{formatted_id}"
         oss_url = upload_to_oss(image_file, pathname)
         return JsonResponse({"url": oss_url})
     except Exception as e:

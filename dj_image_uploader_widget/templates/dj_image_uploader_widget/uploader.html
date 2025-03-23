@@ -1,5 +1,4 @@
 <div class="image-upload-wrapper">
-    <div class="url-value">{{widget.value|default:"未设置URL"}}</div>
     <div class="preview-area">
         <img src="{{ widget.value|default:"" }}" class="preview-image">
     </div>
@@ -10,8 +9,12 @@
         <button type="button" class="upload-oss-btn">上传到云存储</button>
     </div>
 
-    <input type="url" class="url-input" name="{{ widget.name }}"
-           {% include "django/forms/widgets/attrs.html" %}>
+    <input type="url" 
+           name="{{ widget.name }}" 
+           value="{{ widget.value|default:'' }}" 
+           class="url-input" 
+           placeholder="图片URL"
+           {{ widget.attrs|safe }}>
     
     <input type="hidden" class="upload-url" value="{{ widget.upload_url }}">
 </div>
